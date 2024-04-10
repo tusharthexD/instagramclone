@@ -3,11 +3,12 @@ import axios from 'axios';
 
 function Login(props) {
     const [login , setLogin] = useState({})
+    const [loginmsg, setLoginMg] =useState(null)
 
     const SubmitLogin = async (event) => {
         event.preventDefault();
         await axios.post("/api/login", login).then((res) => {
-           console.log(res.data);
+           setLoginMg(res.data);
            props.callBack()
         });
       };
@@ -24,7 +25,7 @@ function Login(props) {
       }
   return (
     <form method="post" className="position-absolute mt-5 start-50 translate-middle-x z-3 bg-light p-3 rounded" onSubmit={SubmitLogin}>
-    <p>hh</p>
+    {loginmsg ? <p>{loginmsg}</p> : null}
     <div className="form-group">
       <label htmlFor="email">Email address</label>
       <input

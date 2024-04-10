@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import StorySection from "./StorySection";
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 
 
 function StoryContainer() {
@@ -95,6 +96,7 @@ if (activeStoryIndex > 0) {
 if (stories) {
   return (
    <div className="vh-100">
+   <a href="/" className="position-absolute end-0 m-1 me-4" ><CloseRoundedIcon /></a>
     <div ref={containerRef} className="vh-100 vw-100 overflow-y-hidden d-none d-md-flex border-danger border" style={{padding: `0 ${window.innerWidth / 5}px`, gap: '5px'}} >
       {stories.map((e, index) => (
         <div
