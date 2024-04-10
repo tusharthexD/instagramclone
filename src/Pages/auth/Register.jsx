@@ -1,9 +1,12 @@
 import DoneIcon from "@mui/icons-material/Done";
-import { IconButton, Slide } from "@mui/material";
+import { IconButton } from "@mui/material";
 import axios from "axios";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom'
 
 function Register() {
+
+  const navigate = useNavigate()
   const [wrongPsw, setWrongPsw] = useState("");
   const [login, setLogin] = useState({
     username: "",
@@ -18,7 +21,13 @@ function Register() {
     if (psw1 === psw) {
       await axios
         .post("/api/register", login)
-        .then((res) => setWrongPsw(res.data));
+        .then((res) => {
+          if (res.data == 'USER CREATED') {
+            navigate('/')
+          } else {
+            setWrongPsw(res.data)
+          }
+        });
     } else {
       setWrongPsw("Password should be same");
       setLogin((prev) => {
