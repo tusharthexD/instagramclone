@@ -13,26 +13,26 @@ function HomeMain() {
     axios.defaults.withCredentials = true;
 
     useEffect(() => {
-     try {
-      axios
-      .get("/api/islogged")
-      .then((res) => {
-        console.log(res);
-        if (res.data.isLoggedin) {
-          setName(res.data.user);
-          sessionStorage.setItem('username', res.data.user)
-          sessionStorage.setItem('profile', res.data.profile)
-        } else {
-          sessionStorage.clear()
-          navigate("/login");
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-     } catch (error) {
-      console.log(error);
-     }
+    //  try {
+    //   axios
+    //   .get("/api/islogged")
+    //   .then((res) => {
+    //     console.log(res);
+    //     if (res.data.isLoggedin) {
+    //       setName(res.data.user);
+    //       sessionStorage.setItem('username', res.data.user)
+    //       sessionStorage.setItem('profile', res.data.profile)
+    //     } else {
+    //       sessionStorage.clear()
+    //       navigate("/login");
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+    //  } catch (error) {
+    //   console.log(error);
+    //  }
     }, [LogOut]);
 
     function getPost(){

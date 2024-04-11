@@ -25,20 +25,20 @@ function Navbar() {
     const [notification, setNotifications] = useState(false)
 
     useEffect(() => {
-      // axios
-      //   .get("/api/islogged")
-      //   .then((res) => {
-      //   console.log(res);
+      axios
+        .get("/api/islogged")
+        .then((res) => {
+        console.log(res);
 
-      //     if (res.data.isLoggedin) {
-      //       setName(res.data);
-      //     } else {
-      //      setName(false) 
-      //     }
-      //   })
-      //   .catch((err) => {
-      //     console.log(err);
-      //   });
+          if (res.data.isLoggedin) {
+            setName(res.data);
+          } else {
+           setName(false) 
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     
     }, []);
 
