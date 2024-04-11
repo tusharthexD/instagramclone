@@ -7,10 +7,10 @@ export default defineConfig({
   server: {
       proxy: {
         '/api': {
-          target: 'http://instaclonebe-rfqu.onrender.com',
-          changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/api/, ''),
-        },
+        target: 'https://instaclonebe-rfqu.onrender.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
       },
     },
 });
