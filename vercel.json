@@ -1,12 +1,7 @@
 {
     "rewrites": [
-        {
-            "source": "/api/(.*)",
-            "destination": "https://instaclonebe-rfqu.onrender.com"
-        },
-        {
-            "source": "/(.*)",
-            "destination": "/"
-        }
+      { "source": "/api/", "destination": "https://instaclonebe-rfqu.onrender.com" },
+      { "source": "/api/*", "destination": "/api/index.html" },
+      { "source": "/(.*)", "destination": "/index.html" }
     ]
-}
+  }
