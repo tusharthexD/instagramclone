@@ -14,7 +14,7 @@ function Home(props) {
   useEffect(() => {
 const fetchData = async ()=>{
   if (id) {
-     await axios.get("https://instaclonebe-rfqu.onrender.com/api/post/" + id).then((res) => {
+     await axios.get("/api/post/" + id).then((res) => {
         if (res.data) {
           hidePost(true);
           setPost(res.data);
@@ -23,8 +23,8 @@ const fetchData = async ()=>{
         }
       });
     }
-   await axios.get("https://instaclonebe-rfqu.onrender.com/api/posts").then((res) => setData(res.data));
-   await axios.get("https://instaclonebe-rfqu.onrender.com/api/stories").then((res) => {
+   await axios.get("/api/posts").then((res) => setData(res.data));
+   await axios.get("/api/stories").then((res) => {
     const resultArray = [];
 
 res.data.forEach(item => {
