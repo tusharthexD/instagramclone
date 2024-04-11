@@ -14,7 +14,6 @@ function StorySection(props) {
       const navEvent = new PopStateEvent("popstate");
       window.dispatchEvent(navEvent);
     } else {
-      console.log(' ia m calling next slide', number);
       props.nextStory(e);
     }
   }

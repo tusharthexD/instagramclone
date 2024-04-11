@@ -13,11 +13,9 @@ function StoryContainer() {
   const [activeStoryIndex, setActiveStoryIndex] = useState(0);
 
   const handleStoryClick = (index) => {
-    console.log('parent clicked');
     setActiveStoryIndex(index);
 
   };
-  console.log(id);
 
   const scrollToActiveSlideCenter = () => {
     if (!containerRef.current) return;
@@ -38,7 +36,6 @@ function StoryContainer() {
   // Scroll to center of active slide when activeStoryIndex changes
   useEffect(() => {
     scrollToActiveSlideCenter();
-    console.log(activeStoryIndex);
   }, [activeStoryIndex]);
 
   useEffect(() => {
