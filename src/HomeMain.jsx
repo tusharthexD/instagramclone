@@ -17,7 +17,7 @@ function HomeMain() {
 
     useEffect(() => {
       axios
-        .get("/api/")
+        .get("/api/islogged")
         .then((res) => {
           if (res.data.isLoggedin) {
             setName(res.data.user);
@@ -40,7 +40,7 @@ function HomeMain() {
    
     
     function LogOut() {
-      axios.post("/api/", { isLoggedin: false });
+      axios.get("/api/logout");
       navigate("/");
     }
     if (name) {
