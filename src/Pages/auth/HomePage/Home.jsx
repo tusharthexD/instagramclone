@@ -8,8 +8,8 @@ function Home(props) {
   const [stories, setStories] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
-      axios.get('/api/posts').then(res=>{setData(res.data);})
-      await axios.get("/api/stories").then((res) => {
+      axios.get('https://instaclonebe-rfqu.onrender.com/api/posts').then(res=>{setData(res.data);})
+      await axios.get("https://instaclonebe-rfqu.onrender.com/api/stories").then((res) => {
         setStories(res.data);
         const resultArray = [];
 

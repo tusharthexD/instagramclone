@@ -26,8 +26,7 @@ function Navbar() {
 
   useEffect(() => {
     const fetchData = async () => {
-      axios
-        .get("/api/")
+      axios.get("https://instaclonebe-rfqu.onrender.com/api/")
         .then((res) => {
           if (res.data.isLoggedin) {
             setName(res.data);
