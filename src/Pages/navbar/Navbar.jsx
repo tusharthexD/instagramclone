@@ -20,25 +20,25 @@ const fs = { fontSize : 32 }
 function Navbar() {
     const [addPost, setAddPost] = useState(false)
     const [expanded , isExpanded] = useState(false)
-    const [name, setName] = useState(false)
+    const [name, setName] = useState(true)
     const [more, setMore] = useState(false)
     const [notification, setNotifications] = useState(false)
 
     useEffect(() => {
-      axios
-        .get("/api/islogged")
-        .then((res) => {
-        console.log(res);
+      // axios
+      //   .get("/api/islogged")
+      //   .then((res) => {
+      //   console.log(res);
 
-          if (res.data.isLoggedin) {
-            setName(res.data);
-          } else {
-           setName(false) 
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      //     if (res.data.isLoggedin) {
+      //       setName(res.data);
+      //     } else {
+      //      setName(false) 
+      //     }
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //   });
     
     }, []);
 
