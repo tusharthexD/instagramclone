@@ -104,7 +104,7 @@ async function uploadImage() {
          getDownloadURL(imageRef).then(async (e) => {
              user.profile = e
              sessionStorage.profile = e
-          axios.post('/api/profile/edit',user).then(res=>{
+          axios.post('https://instaclonebe-rfqu.onrender.com/api/profile/edit',user).then(res=>{
            if (res.data == "Changes Saved") {
             navigate("/"+user.username)
            }
@@ -118,7 +118,7 @@ async function uploadImage() {
        console.log(error);
      }
    } else {
-    axios.post('/api/profile/edit',user).then(res=>{
+    axios.post('https://instaclonebe-rfqu.onrender.com/api/profile/edit',user).then(res=>{
       if (res.data == "Changes Saved") {
         navigate("/"+user.username)
        }

@@ -20,7 +20,7 @@ function Register() {
     let psw = event.target.password.value;
     if (psw1 === psw) {
       await axios
-        .post("/api/register", login)
+        .post("https://instaclonebe-rfqu.onrender.com/api/register", login)
         .then((res) => {
           if (res.data == 'USER CREATED') {
             navigate('/')
@@ -48,7 +48,7 @@ function Register() {
   }
 
   async function EmailRegistration(e) {
-    const response = await axios.post("/api/emailRegistration", login);
+    const response = await axios.post("https://instaclonebe-rfqu.onrender.com/api/emailRegistration", login);
     console.log(response.data);
     if (response.data === true) {
       console.log(response.data);

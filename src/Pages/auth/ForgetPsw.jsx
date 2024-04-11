@@ -16,7 +16,7 @@ function ForgetPsw() {
 
 const SubmitEmail = async (e)=>{
      e.preventDefault()
-    const result = await axios.post('/api/reset',{email: email})
+    const result = await axios.post('https://instaclonebe-rfqu.onrender.com/api/reset',{email: email})
     console.log(result.data);
         setEmailAvailable(true)
         setOTP(result.data)
@@ -25,7 +25,7 @@ const SubmitPassword = async (e)=>{
 
     if (reset.password1 === reset.password2) {
         e.preventDefault()
-       const res = await axios.post('/api/resetpassword', reset)
+       const res = await axios.post('https://instaclonebe-rfqu.onrender.com/api/resetpassword', reset)
        setSuccess(res.data)
        setFinal(true)
        setOTP(false)

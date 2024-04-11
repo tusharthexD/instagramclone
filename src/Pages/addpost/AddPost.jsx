@@ -81,7 +81,7 @@ if (enteredFile.type === "video/mp4") {
       await uploadBytes(imageRef, compressedFile).then((e) =>
         getDownloadURL(imageRef).then(async (e) => {
           await axios
-            .post("/api/addpost", {
+            .post("https://instaclonebe-rfqu.onrender.com/api/addpost", {
               id: id,
               username: "tushar",
               post: e,

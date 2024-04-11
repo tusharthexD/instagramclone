@@ -19,7 +19,7 @@ function Post(props) {
   const [comment, setComment] = useState({ addcmt: "" });
 
   async function submitComment() {
-    await axios.post("/api/addcomment/" + props.id, comment);
+    await axios.post("https://instaclonebe-rfqu.onrender.com/api/addcomment/" + props.id, comment);
     setComment({addcmt: ''})
     props.comment.length = props.comment.length+1
       
@@ -27,13 +27,13 @@ function Post(props) {
 
 function likeDislike(){
 if (like == false) {
-  axios.get('/api/like/'+props.id).then(res=>{
+  axios.get('https://instaclonebe-rfqu.onrender.com/api/like/'+props.id).then(res=>{
     setLike(res.data)
     addLike(p=> p + 1);
   })
 }
 else{
-  axios.get('/api/dislike/'+props.id).then(res=>{
+  axios.get('https://instaclonebe-rfqu.onrender.com/api/dislike/'+props.id).then(res=>{
     setLike(res.data)
     addLike(p=> p - 1);
   })

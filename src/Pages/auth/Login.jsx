@@ -7,7 +7,7 @@ function Login(props) {
 
     const SubmitLogin = async (event) => {
         event.preventDefault();
-        await axios.post("/api/login", login).then((res) => {
+        await axios.post("https://instaclonebe-rfqu.onrender.com/api/login", login).then((res) => {
            setLoginMg(res.data);
            props.callBack()
         });

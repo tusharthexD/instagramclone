@@ -20,7 +20,7 @@ function Search(props) {
       
     }
     useEffect(() => {
-      axios.post("/api/search", { search: search }).then((res) => {
+      axios.post("https://instaclonebe-rfqu.onrender.com/api/search", { search: search }).then((res) => {
         if (search) {
         setLoading(false)
           setResult(res.data);

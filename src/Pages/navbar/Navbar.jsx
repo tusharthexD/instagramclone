@@ -53,7 +53,7 @@ function Navbar() {
     setNotifications((p) => !p);
   }
   function logout() {
-    axios.get("/api/logout");
+    axios.get("https://instaclonebe-rfqu.onrender.com/api/logout");
   }
 
   if (name) {

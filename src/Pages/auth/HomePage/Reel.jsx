@@ -50,18 +50,18 @@ const Reel = ({ videos }) => {
   }, []);
 
   async function submitComment() {
-    await axios.post("/api/addcommentReel/" + post.id, comment);
+    await axios.post("https://instaclonebe-rfqu.onrender.com/api/addcommentReel/" + post.id, comment);
     setComment({ addcmt: "" });
   }
 
   function likeDislike() {
     if (like == false) {
-      axios.get("/api/likeReel/" + post.id).then((res) => {
+      axios.get("https://instaclonebe-rfqu.onrender.com/api/likeReel/" + post.id).then((res) => {
         setLike(res.data);
         addLike((p) => p + 1);
       });
     } else {
-      axios.get("/api/dislikeReel/" + post.id).then((res) => {
+      axios.get("https://instaclonebe-rfqu.onrender.com/api/dislikeReel/" + post.id).then((res) => {
         setLike(res.data);
         addLike((p) => p - 1);
       });

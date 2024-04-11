@@ -22,7 +22,7 @@ function Profile() {
   const [story, showStory] = useState(false)
   const [loading, setLoading] = useState(true)
   useEffect(() => {
-    axios.post("/api/profile", { id: id }).then((res) => {
+    axios.post("https://instaclonebe-rfqu.onrender.com/api/profile", { id: id }).then((res) => {
     if (!res.data) navigate('/')
     else{
       setResult(res.data.user);
@@ -30,7 +30,7 @@ function Profile() {
       isLoggedIn(res.data.isLoggedin);
       setMyProfile(res.data.myProfile);}
     });
-    axios.post("/api/profile/posts", { id: id }).then((res) => {
+    axios.post("https://instaclonebe-rfqu.onrender.com/api/profile/posts", { id: id }).then((res) => {
       if (res.data.length !== 0) {
         setPosts(res.data);
       }
@@ -42,13 +42,13 @@ function Profile() {
       if (!follow) {
         //if user follow
         axios
-          .post("/api/follow", { user: id })
+          .post("https://instaclonebe-rfqu.onrender.com/api/follow", { user: id })
           .then((res) => setFollow(true));
         
       } else {
         //if user unfollow
         axios
-          .post("/api/unfollow", { user: id })
+          .post("https://instaclonebe-rfqu.onrender.com/api/unfollow", { user: id })
           .then((res) => setFollow(false));
         
       }

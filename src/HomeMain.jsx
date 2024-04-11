@@ -35,7 +35,7 @@ function HomeMain() {
   function getPost() {}
 
   function LogOut() {
-    axios.get("/api/logout");
+    axios.get("https://instaclonebe-rfqu.onrender.com/api/logout");
     navigate("/");
   }
   if (name) {

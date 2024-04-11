@@ -7,7 +7,7 @@ function ReelContainer() {
 const [videos, setReels] = useState([])
 
 useEffect(()=>{
-axios.get("/api/reels").then((res) => setReels(res.data));
+axios.get("https://instaclonebe-rfqu.onrender.com/api/reels").then((res) => setReels(res.data));
 
 },[])
 

@@ -12,7 +12,7 @@ function Explore() {
     setSearch(e.target.value);
   }
   useEffect(() => {
-    axios.post("/api/search", { search: search }).then((res) => {
+    axios.post("https://instaclonebe-rfqu.onrender.com/api/search", { search: search }).then((res) => {
       if (search) {
         setResult(res.data);
       } else {
@@ -22,7 +22,7 @@ function Explore() {
   }, [search]);
 
   useEffect(() => {
-    axios.get("/api/posts").then((res) => {
+    axios.get("https://instaclonebe-rfqu.onrender.com/api/posts").then((res) => {
       setExplore(res.data);
     });
   }, []);
