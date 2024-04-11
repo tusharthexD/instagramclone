@@ -17,6 +17,7 @@ function HomeMain() {
       axios
       .get("/api/islogged")
       .then((res) => {
+        console.log(res);
         if (res.data.isLoggedin) {
           setName(res.data.user);
           sessionStorage.setItem('username', res.data.user)
