@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import Navbar from "./Pages/navbar/Navbar";
 import axios from "axios";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import Home from "./Pages/auth/HomePage/Home";
 
 function HomeMain() {
@@ -14,9 +14,8 @@ function HomeMain() {
   useEffect(() => {
     const fetchData = async () => {
       axios
-        .get("/api/islogged")
+        .get("/api/")
         .then((res) => {
-          console.log(res);
           if (res.data.isLoggedin) {
             setName(res.data.user);
             sessionStorage.setItem("username", res.data.user);

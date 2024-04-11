@@ -27,10 +27,8 @@ function Navbar() {
   useEffect(() => {
     const fetchData = async () => {
       axios
-        .get("/api/islogged")
+        .get("/api/")
         .then((res) => {
-          console.log(res);
-
           if (res.data.isLoggedin) {
             setName(res.data);
           } else {

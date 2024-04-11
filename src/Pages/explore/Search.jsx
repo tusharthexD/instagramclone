@@ -31,7 +31,7 @@ function Search(props) {
     }, [search]);
 
   return (
-    <div className="searchSec z-3 vh-100 d-none d-md-block col-12 bg-light rounded position-absolute" >
+    <div className="searchSec z-3 bg-light vh-100 d-none d-md-block col-12 rounded position-absolute" >
     <CloseRoundedIcon onClick={props.closeSearch} className='position-absolute end-0 m-2' />
          <div className="mt-5 w-100 p-2">
           <input

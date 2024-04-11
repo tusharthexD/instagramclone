@@ -75,7 +75,7 @@ function Profile() {
         <div className="col-12 col-md-8 flex-grow-1 d-flex flex-column align-items-center">
           <div className="profileSec col-12 d-flex align-items-center pb-5 mt-4">
             <div className="ms-4 col-2">
-            <div className="position-relative" >
+            <div className="position-relative z-n1" >
               <img
                 className="col-12 rounded-circle"
                 src={result.profile? result.profile : '/blankProfile.png'}
