@@ -38,7 +38,6 @@ const [isMuted, setIsMuted] = useState(true);
   };
 
 const [comment, setComment] = useState({ addcmt: "" });
-console.log(id);
 
 useEffect(()=>{
   if (id){
@@ -54,7 +53,7 @@ useEffect(()=>{
           }
       }
       else{
-        // navigate('/')
+        navigate('/')
       }
     })
   }
@@ -153,7 +152,7 @@ else{
             <ChatBubbleOutlineRoundedIcon />
           </IconButton>
           
-          <IconButton onClick={()=>console.log(sessionStorage)}>
+          <IconButton >
             <SendSharpIcon />
           </IconButton>
         </div>

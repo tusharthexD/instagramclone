@@ -26,7 +26,6 @@ return <Router>
             <Route path="/post/:id" element={<OpenPost />} />
             <Route path="/reel/:id" element={<OpenReel />} />
             <Route path="/reels/" element={<ReelContainer />} />
-            <Route path="/open" element={<OpenPost />} />
             <Route path="/messages" element={<Message />} />
             <Route path="/explore" element={<Explore />} />
             <Route path="/profile/edit" element={<EditProfile />} />
