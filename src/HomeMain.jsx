@@ -15,13 +15,14 @@ function HomeMain() {
     const fetchData = async () => {
      await axios.get("https://instaclonebe-rfqu.onrender.com/api/")
         .then((res) => {
+          console.log(res.data);
           if (res.data.isLoggedin) {
             setName(res.data.user);
             sessionStorage.setItem("username", res.data.user);
             sessionStorage.setItem("profile", res.data.profile);
           } else {
             sessionStorage.clear();
-            // navigate("/login");
+            navigate("/login");
           }
         })
         .catch((err) => {
