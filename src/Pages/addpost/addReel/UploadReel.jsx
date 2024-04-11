@@ -70,7 +70,6 @@ function UploadReel(props) {
 
   const handleSubmit = async (e) => {
     // e.preventDefault();
-    console.log('im calling');
     const formData = new FormData();
     formData.append("video", video);
     formData.append("start", start);
@@ -86,7 +85,6 @@ function UploadReel(props) {
       const id = v1()
        
       const trimmedVideo = new File([response.data], 'trimmed.mp4', { type: 'video/mp4' });
-      console.log(trimmedVideo);
       const videoRef = ref(storage,"reel/"+ id + ".mp4");
  await uploadBytes(videoRef, trimmedVideo).then((e) =>
         getDownloadURL(videoRef).then(async (e) => {
@@ -97,7 +95,7 @@ function UploadReel(props) {
               caption: caption,
             })
             .then((res) => {
-              if (res.status === 200) console.log('success'); setSuccess(p=>!p);
+              if (res.status === 200) setSuccess(p=>!p);
             });
         }))
    

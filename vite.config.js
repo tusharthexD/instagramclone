@@ -8,7 +8,6 @@ export default defineConfig({
       '/api': {
         target: 'https://instaclonebe-rfqu.onrender.com',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '')
       }
     }
   },

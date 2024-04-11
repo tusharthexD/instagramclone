@@ -44,12 +44,11 @@ function Search(props) {
 {loading? <div className="spinner-border m-5 text-center" role="status"></div> : null }
 
           {search ? <div className="mt-3 position-absolute bg-light col-7 p-2 rounded" >
-            {result.map((e) => {
+            {result.map((e,index) => {
               return (
-                <Slide in={true} direction='right' ><Link to={"/"+e.username} >
+                <Slide in={true} key={index}  direction='right' ><Link to={"/"+e.username} >
                 <div className="d-flex align-items-center">
                   <img
-                  key={e.username}
                     src={e.profile ? e.profile : "/blankProfile.png"}
                     className="rounded-circle me-2"
                     style={{ height: "40px" }}

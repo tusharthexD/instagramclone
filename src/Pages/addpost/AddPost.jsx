@@ -18,7 +18,6 @@ function AddPost(props) {
 
   function selectImage(e) {
     const enteredFile = e.target.files[0];
-console.log(enteredFile);
 if (enteredFile.type === "video/mp4") {
   setReelVideo(enteredFile);
 
