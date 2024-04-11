@@ -13,8 +13,7 @@ function HomeMain() {
 
   useEffect(() => {
     const fetchData = async () => {
-      axios
-        .get("https://instaclonebe-rfqu.onrender.com/api/")
+      axios.get("https://instaclonebe-rfqu.onrender.com/api/")
         .then((res) => {
           if (res.data.isLoggedin) {
             setName(res.data.user);
