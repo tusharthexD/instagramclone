@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Reel from './Reel';
-import Reels from './Reels';
 import axios from 'axios';
 import Navbar from '../../navbar/Navbar';
 
