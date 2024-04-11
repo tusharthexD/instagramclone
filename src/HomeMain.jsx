@@ -21,7 +21,7 @@ function HomeMain() {
             sessionStorage.setItem("profile", res.data.profile);
           } else {
             sessionStorage.clear();
-            navigate("/login");
+            // navigate("/login");
           }
         })
         .catch((err) => {
