@@ -40,7 +40,7 @@ function HomeMain() {
     axios.get("/api/logout");
     navigate("/");
   }
-  // if (name) {
+  if (name) {
   return (
     <div className="d-flex position-relative ">
       <div>
@@ -51,9 +51,9 @@ function HomeMain() {
       </div>
     </div>
   );
-  // } else {
-  //   <div>Technical error</div>
-  // }
+  } else {
+    <div>Technical error</div>
+  }
 }
 
 export default HomeMain;
