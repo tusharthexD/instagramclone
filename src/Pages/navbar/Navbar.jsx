@@ -18,6 +18,7 @@ import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 const fs = { fontSize: 32 };
 
 function Navbar() {
+  axios.defaults.withCredentials = true
   const [addPost, setAddPost] = useState(false);
   const [expanded, isExpanded] = useState(false);
   const [name, setName] = useState(true);

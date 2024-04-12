@@ -6,6 +6,7 @@ import Stories from "../../story/openstory/Stories";
 function Home(props) {
   const [data, setData] = useState([]);
   const [stories, setStories] = useState([]);
+  axios.defaults.withCredentials = true
   useEffect(() => {
     const fetchData = async () => {
       axios.get('https://instaclonebe-rfqu.onrender.com/api/posts').then(res=>{setData(res.data);})
