@@ -18,7 +18,6 @@ import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 const fs = { fontSize: 32 };
 
 function Navbar() {
-  axios.defaults.withCredentials = true
   const [addPost, setAddPost] = useState(false);
   const [expanded, isExpanded] = useState(false);
   const [name, setName] = useState(true);
@@ -27,7 +26,8 @@ function Navbar() {
 
   useEffect(() => {
     const fetchData = async () => {
-      axios.get("https://instaclonebe-rfqu.onrender.com/api/")
+      axios.defaults.withCredentials = true;
+     await axios.get("https://instaclonebe-rfqu.onrender.com/api/")
         .then((res) => {
           if (res.data.isLoggedin) {
             setName(res.data);

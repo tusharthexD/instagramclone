@@ -9,10 +9,10 @@ function HomeMain() {
   const [name, setName] = useState("");
   const navigate = useNavigate();
 
-  axios.defaults.withCredentials = true;
 
   useEffect(() => {
     const fetchData = async () => {
+      axios.defaults.withCredentials = true;
      await axios.get("https://instaclonebe-rfqu.onrender.com/api/")
         .then((res) => {
           console.log(res.data);
