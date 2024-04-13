@@ -11,6 +11,7 @@ import UploadStory from "../story/UploadStory";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 function Profile() {
+
   const { id } = useParams();
   const navigate = useNavigate()
   const [result, setResult] = useState();

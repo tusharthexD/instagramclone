@@ -11,8 +11,6 @@ function LoginPage() {
 
   const navigate = useNavigate();
 
-  axios.defaults.withCredentials = true;
-
   const SubmitLogin = async (event) => {
     event.preventDefault();
     await axios.post("https://instaclonebe-rfqu.onrender.com/api/login", login).then((res) => {

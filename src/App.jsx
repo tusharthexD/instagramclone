@@ -13,9 +13,11 @@ import ReelContainer from './Pages/auth/HomePage/ReelContainer';
 import ForgetPsw from './Pages/auth/ForgetPsw';
 import StoryContainer from './Pages/story/openstory/StoryContainer';
 import Settings from './Pages/Settings';
+import axios from 'axios';
 
 
 function App() {
+   axios.defaults.withCredentials = true;
  
 return <Router>
          <Routes>
