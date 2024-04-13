@@ -29,7 +29,7 @@ function Navbar() {
   useEffect(() => {
     const fetchData = async () => {
       await axios
-        .get("/api/", {
+        .get("https://instaclonebe-rfqu.onrender.com/api/", {
           headers: {
             Authorization: `Bearer ${sessionStorage.token}`,
           },

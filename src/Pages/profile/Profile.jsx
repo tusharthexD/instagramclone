@@ -24,7 +24,7 @@ function Profile() {
   useEffect(() => {
     axios
       .post(
-        "/api/profile",
+        "https://instaclonebe-rfqu.onrender.com/api/profile",
         { id: id },
         {
           headers: {

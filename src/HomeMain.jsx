@@ -14,7 +14,7 @@ function HomeMain() {
     const fetchData = async () => {
       axios.defaults.withCredentials = true;
      try {
-      await axios.get("/api/",{
+      await axios.get("https://instaclonebe-rfqu.onrender.com/api/",{
          headers: {
            Authorization: `Bearer ${sessionStorage.token}`,
          },

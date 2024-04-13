@@ -13,7 +13,7 @@ function LoginPage() {
 
   const SubmitLogin = async (event) => {
     event.preventDefault();
-    await axios.post("/api/login", login).then((res) => {
+    await axios.post("https://instaclonebe-rfqu.onrender.com/api/login", login).then((res) => {
       
     if (res.data.token) {
       sessionStorage.setItem("token", res.data.token);
