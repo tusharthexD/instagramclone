@@ -17,7 +17,7 @@ function LoginPage() {
     event.preventDefault();
     await axios.post("https://instaclonebe-rfqu.onrender.com/api/login", login).then((res) => {
       if (res.data.isLoggedin) {
-        // navigate('/')
+        navigate('/')
       }
       console.log(res.data);
       setWrongPsw(res.data.message)
