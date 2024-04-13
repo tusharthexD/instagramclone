@@ -27,9 +27,7 @@ function Navbar() {
   useEffect(() => {
     const fetchData = async () => {
       axios.defaults.withCredentials = true;
-     await axios.get("https://instaclonebe-rfqu.onrender.com/api/",{
-  withCredentials: true
-})
+     await axios.get("https://instagramclone-drab.vercel.app/api/")
         .then((res) => {
           if (res.data.isLoggedin) {
             setName(res.data);

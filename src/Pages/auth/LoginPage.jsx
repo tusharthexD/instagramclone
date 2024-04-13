@@ -11,13 +11,11 @@ function LoginPage() {
 
   const navigate = useNavigate();
 
-  // axios.defaults.withCredentials = true;
+  axios.defaults.withCredentials = true;
 
   const SubmitLogin = async (event) => {
     event.preventDefault();
-    await axios.post("https://instaclonebe-rfqu.onrender.com/api/login", login,{
-  withCredentials: true
-}).then((res) => {
+    await axios.post("https://instagramclone-drab.vercel.app/api/login", login).then((res) => {
       if (res.data.isLoggedin) {
         // navigate('/')
       }
