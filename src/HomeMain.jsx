@@ -13,7 +13,9 @@ function HomeMain() {
   useEffect(() => {
     const fetchData = async () => {
       axios.defaults.withCredentials = true;
-     await axios.get("https://instaclonebe-rfqu.onrender.com/api/")
+     await axios.get("https://instaclonebe-rfqu.onrender.com/api/",{
+  withCredentials: true
+})
         .then((res) => {
           console.log(res.data);
           if (res.data.isLoggedin) {
