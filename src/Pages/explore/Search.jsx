@@ -1,6 +1,5 @@
 import React,{useState, useEffect} from 'react'
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import { Slide } from '@mui/material';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 
@@ -46,7 +45,7 @@ function Search(props) {
           {search ? <div className="mt-3 position-absolute bg-light col-7 p-2 rounded" >
             {result.map((e,index) => {
               return (
-                <Slide in={true} key={index}  direction='right' ><Link to={"/"+e.username} >
+                <Slide in={true} key={index}  direction='right' ><a href={"/"+e.username} >
                 <div className="d-flex align-items-center">
                   <img
                     src={e.profile ? e.profile : "/blankProfile.png"}
@@ -55,7 +54,7 @@ function Search(props) {
                     alt=""
                   />
                   <p className="fw-bolder">{e.username}</p>
-                </div></Link></Slide>
+                </div></a></Slide>
               );
             })}
           </div> : null }

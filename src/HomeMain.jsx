@@ -13,21 +13,30 @@ function HomeMain() {
   useEffect(() => {
     const fetchData = async () => {
       axios.defaults.withCredentials = true;
-     await axios.get("https://instaclonebe-rfqu.onrender.com/api/")
-        .then((res) => {
-          console.log(res.data);
-          if (res.data.isLoggedin) {
-            setName(res.data.user);
-            sessionStorage.setItem("username", res.data.user);
-            sessionStorage.setItem("profile", res.data.profile);
-          } else {
-            sessionStorage.clear();
-            navigate("/login");
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+     try {
+      await axios.get("/api/",{
+         headers: {
+           Authorization: `Bearer ${sessionStorage.token}`,
+         },
+       })
+         .then((res) => {
+           console.log(res.data);
+           if (res.data.isLoggedin) {
+             setName(true);
+             sessionStorage.setItem("username", res.data.username);
+             sessionStorage.setItem("profile", res.data.profile);
+           } else {
+            
+             sessionStorage.clear();
+             navigate("/login");
+           }
+         })
+         .catch((err) => {
+           console.log(err);
+         });
+     } catch (error) {
+      navigate("/login");
+     }
     };
 
     fetchData();
@@ -36,8 +45,8 @@ function HomeMain() {
   function getPost() {}
 
   function LogOut() {
-    axios.get("https://instaclonebe-rfqu.onrender.com/api/logout");
-    navigate("/");
+    sessionStorage.clear()
+    navigate("/login");
   }
   if (name) {
   return (
@@ -51,7 +60,7 @@ function HomeMain() {
     </div>
   );
   } else {
-    <div>Technical error</div>
+    <div className="position-absolute">Technical error</div>
   }
 }
 

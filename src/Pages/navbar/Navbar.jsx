@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import NavBtn from "./NavBtn";
 import HomeIcon from "@mui/icons-material/Home";
 import SearchIcon from "@mui/icons-material/Search";
@@ -13,7 +14,7 @@ import axios from "axios";
 import AddPost from "../addpost/AddPost";
 import Search from "../explore/Search";
 import { Button, Slide, Zoom } from "@mui/material";
-import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+import { useNavigate } from "react-router-dom";
 
 const fs = { fontSize: 32 };
 
@@ -23,14 +24,23 @@ function Navbar() {
   const [name, setName] = useState(true);
   const [more, setMore] = useState(false);
   const [notification, setNotifications] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
-     await axios.get("https://instaclonebe-rfqu.onrender.com/api/")
+      await axios
+        .get("/api/", {
+          headers: {
+            Authorization: `Bearer ${sessionStorage.token}`,
+          },
+        })
         .then((res) => {
           if (res.data.isLoggedin) {
-            setName(res.data);
+            console.log("showing");
+            setName(true);
           } else {
+            console.log("not showing");
+
             setName(false);
           }
         })
@@ -53,7 +63,8 @@ function Navbar() {
     setNotifications((p) => !p);
   }
   function logout() {
-    axios.get("https://instaclonebe-rfqu.onrender.com/api/logout");
+    sessionStorage.clear();
+    navigate("/login");
   }
 
   if (name) {
@@ -80,60 +91,72 @@ function Navbar() {
           </div>
           <InstagramIcon className="d-lg-none mt-3" sx={fs} />
           <div className="d-flex flex-column w-100 p-lg-3">
-            <NavBtn text="Home" icon=<HomeIcon sx={fs} /> link="/" />
-
-            <NavBtn
-              fun={openSearch}
-              text="search"
-              icon=<SearchIcon sx={fs} />
-              link="#"
-            />
-
-            <NavBtn
-              text="Explore"
-              icon=<ExploreOutlinedIcon sx={fs} />
-              link="/explore"
-            />
-
-            <NavBtn
-              text="reels"
-              icon=<SlowMotionVideoOutlinedIcon sx={fs} />
-              link="/reels"
-            />
-
-            <NavBtn
-              text="messages"
-              icon=<EmailOutlinedIcon sx={fs} />
-              link="/messages"
-            />
-
-            <NavBtn
-              fun={notifications}
-              text="Notifications"
-              icon=<FavoriteBorderOutlinedIcon sx={fs} />
-              link="#"
-            />
-
-            <NavBtn
-              fun={newPost}
-              text="create"
-              icon=<AddBoxOutlinedIcon sx={fs} />
-              link=""
-            />
-
-            <NavBtn
-              text="profile"
-              icon=<img
-                src={
-                  sessionStorage.profile != "null"
-                    ? sessionStorage.profile
-                    : "/blankProfile.png"
-                }
-                id="navProfile"
-                className="rounded-circle"
+            <a href={"/"} className="w-100 mb-3 text-decoration-none">
+              <NavBtn text="Home" icon=<HomeIcon sx={fs} /> link="/" />
+            </a>
+            <div className="w-100 mb-3 text-decoration-none">
+              <NavBtn
+                fun={openSearch}
+                text="search"
+                icon=<SearchIcon sx={fs} />
+                link="#"
               />
-              link={"/" + sessionStorage.username}
-            />
+            </div>
+            <Link to={"/explore"} className="w-100 mb-3 text-decoration-none">
+              <NavBtn
+                text="Explore"
+                icon=<ExploreOutlinedIcon sx={fs} />
+                link="/explore"
+              />
+            </Link>
+
+            <Link to={"/reels"} className="w-100 mb-3 text-decoration-none">
+              <NavBtn
+                text="reels"
+                icon=<SlowMotionVideoOutlinedIcon sx={fs} />
+              />
+            </Link>
+
+            <Link to={"/messages"} className="w-100 mb-3 text-decoration-none">
+              <NavBtn text="messages" icon=<EmailOutlinedIcon sx={fs} /> />
+            </Link>
+            <Link
+              to={""}
+              className="w-100 mb-3 text-decoration-none"
+            >
+              <NavBtn
+                fun={notifications}
+                text="Notifications"
+                icon=<FavoriteBorderOutlinedIcon sx={fs} />
+                link="#"
+              />
+            </Link>
+            <div className="w-100 mb-3 text-decoration-none">
+              <NavBtn
+                fun={newPost}
+                text="create"
+                icon=<AddBoxOutlinedIcon sx={fs} />
+                link=""
+              />
+            </div>
+
+            <a
+              href={"/" + sessionStorage.username}
+              className="w-100 mt-4 mb-3 text-decoration-none"
+            >
+              <NavBtn
+                text="profile"
+                icon=<img
+                  src={
+                    sessionStorage.profile != "null"
+                      ? sessionStorage.profile
+                      : "/blankProfile.png"
+                  }
+                  id="navProfile"
+                  className="rounded-circle"
+                />
+              />
+            </a>
           </div>
 
           <Zoom
@@ -159,7 +182,7 @@ function Navbar() {
                 <Button href="/Settings" className="text-dark">
                   Settings
                 </Button>
-                <Button onClick={logout} href="/" className=" text-dark">
+                <Button onClick={logout} href="/#" className=" text-dark">
                   Logout
                 </Button>
               </div>
@@ -182,16 +205,18 @@ function Navbar() {
           <Button href="/messages">
             <EmailOutlinedIcon className="fs-1 text-dark" />
           </Button>
-          <Button href={"/" + sessionStorage.username}>
-            <img
-              src={
-                sessionStorage.profile != "null"
-                  ? sessionStorage.profile
-                  : "/blankProfile.png"
-              }
-              className="rounded-circle"
-              style={{ height: "30px" }}
-            />
+          <Button>
+            <a href={"/" + sessionStorage.username}>
+              <img
+                src={
+                  sessionStorage.profile != "null"
+                    ? sessionStorage.profile
+                    : "/blankProfile.png"
+                }
+                className="rounded-circle"
+                style={{ height: "30px" }}
+              />
+            </a>
           </Button>
         </div>
       </div>
