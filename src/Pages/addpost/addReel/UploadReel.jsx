@@ -1,5 +1,4 @@
 import React, { useRef, useState, useEffect } from "react";
-import axios from "axios";
 import RangeSlider from "./RangeSlider";
 import { IconButton } from "@mui/material";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
@@ -10,6 +9,7 @@ import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "../../../firebase";
 import { v1 } from "uuid";
+import axiosInstance from "../../../../axiosInstance";
 
 
 function UploadReel(props) {
@@ -76,7 +76,7 @@ function UploadReel(props) {
     formData.append("end", end);
 
     try {
-      const response = await axios.post("/api/trim", formData, {
+      const response = await axiosInstance.post("/api/trim", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -88,8 +88,7 @@ function UploadReel(props) {
       const videoRef = ref(storage,"reel/"+ id + ".mp4");
  await uploadBytes(videoRef, trimmedVideo).then((e) =>
         getDownloadURL(videoRef).then(async (e) => {
-          await axios
-            .post("/api/addreel", {
+          await axiosInstance.post("/api/addreel", {
               id: id,
               post: e,
               caption: caption,

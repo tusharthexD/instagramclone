@@ -11,7 +11,7 @@ function OpenStory(props) {
 
     useEffect(() => {
     const fetchData = async () => {
-      const res = axios.get("/api/story/" + id).then((e) => {
+      const res = axios.get("https://instaclonebe-rfqu.onrender.com/api/story/" + id).then((e) => {
         setStory(e.data);
       });
     };

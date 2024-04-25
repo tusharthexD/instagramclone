@@ -18,8 +18,13 @@ function Post(props) {
   const caption = props.caption;
   const [comment, setComment] = useState({ addcmt: "" });
 
+  const token = sessionStorage.getItem('token');
+
   async function submitComment() {
-    await axios.post("https://instaclonebe-rfqu.onrender.com/api/addcomment/" + props.id, comment);
+    await axios.post("https://instaclonebe-rfqu.onrender.com/api/addcomment/" + props.id, comment,
+  {headers: {
+    Authorization: token ? `Bearer ${token}` : '', // Include Authorization header if token exists
+  }});
     setComment({addcmt: ''})
     props.comment.length = props.comment.length+1
       
@@ -27,13 +32,19 @@ function Post(props) {
 
 function likeDislike(){
 if (like == false) {
-  axios.get('https://instaclonebe-rfqu.onrender.com/api/like/'+props.id).then(res=>{
+  axios.get('https://instaclonebe-rfqu.onrender.com/api/like/'+props.id,
+  {headers: {
+    Authorization: token ? `Bearer ${token}` : '', // Include Authorization header if token exists
+  }}).then(res=>{
     setLike(res.data)
     addLike(p=> p + 1);
   })
 }
 else{
-  axios.get('https://instaclonebe-rfqu.onrender.com/api/dislike/'+props.id).then(res=>{
+  axios.get('https://instaclonebe-rfqu.onrender.com/api/dislike/'+props.id,
+  {headers: {
+    Authorization: token ? `Bearer ${token}` : '', // Include Authorization header if token exists
+  }}).then(res=>{
     setLike(res.data)
     addLike(p=> p - 1);
   })

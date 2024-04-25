@@ -14,6 +14,7 @@ import Navbar from "../navbar/Navbar";
 
 function OpenPost() {
 const { id } = useParams();
+const token = sessionStorage.getItem('token');
 const navigate = useNavigate()
 const [post, setPost] = useState(null)
 const [like, setLike] = useState(false);
@@ -47,19 +48,30 @@ useEffect(()=>{
 
 
  async function submitComment() {
-      await axios.post("https://instaclonebe-rfqu.onrender.com/api/addcomment/" + post.id, comment);
+      await axios.post("https://instaclonebe-rfqu.onrender.com/api/addcomment/" + post.id, comment,{
+        headers: {
+    Authorization: token ? `Bearer ${token}` : '', // Include Authorization header if token exists
+  }
+      });
       setComment({addcmt: ''})
     }
 
 function likeDislike(){
 if (like == false) {
-  axios.get('https://instaclonebe-rfqu.onrender.com/api/like/'+post.id).then(res=>{
+  axios.get('https://instaclonebe-rfqu.onrender.com/api/like/'+post.id,
+{ headers: {
+    Authorization: token ? `Bearer ${token}` : '', // Include Authorization header if token exists
+  }}).then(res=>{
     setLike(res.data)
     addLike(p=> p + 1);
   })
 }
 else{
-  axios.get('https://instaclonebe-rfqu.onrender.com/api/dislike/'+post.id).then(res=>{
+  axios.get('https://instaclonebe-rfqu.onrender.com/api/dislike/'+post.id,{
+    headers: {
+    Authorization: token ? `Bearer ${token}` : '', // Include Authorization header if token exists
+  }
+  }).then(res=>{
     setLike(res.data)
     addLike(p=> p - 1);
   })

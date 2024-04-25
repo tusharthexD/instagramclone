@@ -10,25 +10,23 @@ import { v1 } from "uuid";
 import axios from "axios";
 import UploadReel from "./addReel/UploadReel";
 
-
 function AddPost(props) {
   const [baseImage, setBaseImage] = useState(null);
   const [finalRenderedImg, setFinalRenderedImg] = useState(null);
-  const [reelVideo, setReelVideo] = useState(null)
+  const [reelVideo, setReelVideo] = useState(null);
 
   function selectImage(e) {
     const enteredFile = e.target.files[0];
-if (enteredFile.type === "video/mp4") {
-  setReelVideo(enteredFile);
-
-} else {
-    let file = new FileReader();
-    file.onload = (e) => {
-      setBaseImage(e.target.result);
-    };
-    file.readAsDataURL(enteredFile);
-    e.target.value = "";
-  }
+    if (enteredFile.type === "video/mp4") {
+      setReelVideo(enteredFile);
+    } else {
+      let file = new FileReader();
+      file.onload = (e) => {
+        setBaseImage(e.target.result);
+      };
+      file.readAsDataURL(enteredFile);
+      e.target.value = "";
+    }
   }
 
   function croppedImage(e) {
@@ -68,7 +66,7 @@ if (enteredFile.type === "video/mp4") {
   async function uploadImage(caption) {
     const imageFile = base64ToBlob(finalRenderedImg, "image/jpeg");
     let id = v1();
-    const imageRef = ref(storage,"post/"+ id + ".jpg");
+    const imageRef = ref(storage, "post/" + id + ".jpg");
 
     const options = {
       maxSizeMB: 1,
@@ -80,13 +78,22 @@ if (enteredFile.type === "video/mp4") {
 
       await uploadBytes(imageRef, compressedFile).then((e) =>
         getDownloadURL(imageRef).then(async (e) => {
+        const token = sessionStorage.getItem('token');
+
           await axios
-            .post("https://instaclonebe-rfqu.onrender.com/api/addpost", {
-              id: id,
-              username: "tushar",
-              post: e,
-              caption: caption,
-            })
+            .post(
+              "https://instaclonebe-rfqu.onrender.com/api/addpost",
+              {
+                id: id,
+                post: e,
+                caption: caption,
+              },
+              {
+                headers: {
+                  Authorization: token ? `Bearer ${token}` : "", // Include Authorization header if token exists
+                },
+              }
+            )
             .then((res) => {
               if (res.status === 200) props.closeAddPostTab();
             });
@@ -99,14 +106,23 @@ if (enteredFile.type === "video/mp4") {
   function goBack() {
     setBaseImage(null);
     setFinalRenderedImg(null);
-    setReelVideo(null)
+    setReelVideo(null);
   }
 
   return (
-    <div >
+    <div>
       <SelectPost closeTab={props.closeAddPostTab} selectImage={selectImage} />
-     
-     {reelVideo? <UploadReel video={reelVideo} goBack={goBack}  closeReel={()=>{setReelVideo(null); props.closeAddPostTab()}} />: null}
+
+      {reelVideo ? (
+        <UploadReel
+          video={reelVideo}
+          goBack={goBack}
+          closeReel={() => {
+            setReelVideo(null);
+            props.closeAddPostTab();
+          }}
+        />
+      ) : null}
 
       {baseImage ? (
         <CropPost
@@ -122,7 +138,6 @@ if (enteredFile.type === "video/mp4") {
           goBack={goBack}
         />
       ) : null}
-    
     </div>
   );
 }

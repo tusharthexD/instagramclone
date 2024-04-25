@@ -22,14 +22,16 @@ function Profile() {
   const [story, showStory] = useState(false);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
+const token = sessionStorage.getItem('token');
+
     axios
       .post(
         "https://instaclonebe-rfqu.onrender.com/api/profile",
         { id: id },
-        {
-          headers: {
-            Authorization: `Bearer ${sessionStorage.token}`,
-          },
+       {
+        headers: {
+    Authorization: token ? `Bearer ${token}` : '', // Include Authorization header if token exists
+  }
         }
       )
       .then((res) => {

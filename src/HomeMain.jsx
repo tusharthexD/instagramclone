@@ -4,6 +4,7 @@ import Navbar from "./Pages/navbar/Navbar";
 import axios from "axios";
 import { Link, useNavigate} from "react-router-dom";
 import Home from "./Pages/auth/HomePage/Home";
+import axiosInstance from "../axiosInstance";
 
 function HomeMain() {
   const [name, setName] = useState("");
@@ -13,12 +14,14 @@ function HomeMain() {
   useEffect(() => {
     const fetchData = async () => {
       axios.defaults.withCredentials = true;
+const token = sessionStorage.getItem('token');
+
      try {
       await axios.get("https://instaclonebe-rfqu.onrender.com/api/",{
-         headers: {
-           Authorization: `Bearer ${sessionStorage.token}`,
-         },
-       })
+        headers: {
+    Authorization: token ? `Bearer ${token}` : '', // Include Authorization header if token exists
+  }
+      })
          .then((res) => {
            console.log(res.data);
            if (res.data.isLoggedin) {

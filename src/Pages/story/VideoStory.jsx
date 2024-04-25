@@ -44,7 +44,7 @@ function VideoStory(props) {
     formData.append("start", 0);
     formData.append("end", end);
 
-    const response = await axios.post("/api/trim", formData, {
+    const response = await axios.post("https://instaclonebe-rfqu.onrender.com/api/trim", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },

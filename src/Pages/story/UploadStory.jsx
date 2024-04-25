@@ -12,6 +12,8 @@ function UploadStory(props) {
   const [showInput, hideInput] = useState(true);
   const [type, setType] = useState(null);
   const [result, setResult] = useState(null);
+const token = sessionStorage.getItem('token');
+
 
   async function handleInput(e) {
     const file = e.target.files[0];
@@ -35,10 +37,14 @@ function UploadStory(props) {
     hideInput(true);
   }
   async function uploadStory(story, id) {
-    const response = await axios.post("/api/uploadstory", {
+    const response = await axios.post("https://instaclonebe-rfqu.onrender.com/api/uploadstory", {
       story: story,
       id: id,
       type: type,
+    },{
+      headers: {
+    Authorization: token ? `Bearer ${token}` : '', // Include Authorization header if token exists
+  }
     });
     setResult(response.data);
     closeStory();

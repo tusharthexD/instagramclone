@@ -16,7 +16,6 @@ import ReactPlayer from "react-player";
 import HorizontalRuleRoundedIcon from "@mui/icons-material/HorizontalRuleRounded";
 
 const Reel = ({ videos }) => {
-  const navigate = useNavigate();
   const post = videos;
   const [like, setLike] = useState(false);
   const [save, setSave] = useState(false);
@@ -25,6 +24,7 @@ const Reel = ({ videos }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [CmtSec, setCmtSec] = useState(null);
   const comments = post.comments;
+  const token = sessionStorage.getItem('token');
 
   const [comment, setComment] = useState({ addcmt: "" });
 
@@ -50,18 +50,27 @@ const Reel = ({ videos }) => {
   }, []);
 
   async function submitComment() {
-    await axios.post("https://instaclonebe-rfqu.onrender.com/api/addcommentReel/" + post.id, comment);
+    await axios.post("https://instaclonebe-rfqu.onrender.com/api/addcommentReel/" + post.id, comment,
+    {headers: {
+    Authorization: token ? `Bearer ${token}` : '', // Include Authorization header if token exists
+  }});
     setComment({ addcmt: "" });
   }
 
   function likeDislike() {
     if (like == false) {
-      axios.get("https://instaclonebe-rfqu.onrender.com/api/likeReel/" + post.id).then((res) => {
+      axios.get("https://instaclonebe-rfqu.onrender.com/api/likeReel/" + post.id,
+      {headers: {
+    Authorization: token ? `Bearer ${token}` : '', // Include Authorization header if token exists
+  }}).then((res) => {
         setLike(res.data);
         addLike((p) => p + 1);
       });
     } else {
-      axios.get("https://instaclonebe-rfqu.onrender.com/api/dislikeReel/" + post.id).then((res) => {
+      axios.get("https://instaclonebe-rfqu.onrender.com/api/dislikeReel/" + post.id,
+      {headers: {
+    Authorization: token ? `Bearer ${token}` : '', // Include Authorization header if token exists
+  }}).then((res) => {
         setLike(res.data);
         addLike((p) => p - 1);
       });

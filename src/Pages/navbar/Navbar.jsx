@@ -15,6 +15,7 @@ import AddPost from "../addpost/AddPost";
 import Search from "../explore/Search";
 import { Button, Slide, Zoom } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../../axiosInstance";
 
 const fs = { fontSize: 32 };
 
@@ -28,19 +29,15 @@ function Navbar() {
 
   useEffect(() => {
     const fetchData = async () => {
-      await axios
-        .get("https://instaclonebe-rfqu.onrender.com/api/", {
-          headers: {
-            Authorization: `Bearer ${sessionStorage.token}`,
-          },
-        })
+      const token = sessionStorage.getItem('token');
+      await axios.get("https://instaclonebe-rfqu.onrender.com/api/",
+    { headers: {
+    Authorization: token ? `Bearer ${token}` : '', // Include Authorization header if token exists
+  }})
         .then((res) => {
           if (res.data.isLoggedin) {
-            console.log("showing");
             setName(true);
           } else {
-            console.log("not showing");
-
             setName(false);
           }
         })

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../../axiosInstance";
 
 function LoginPage() {
   const [wrongPsw, setWrongPsw] = useState("");
@@ -11,10 +12,12 @@ function LoginPage() {
 
   const navigate = useNavigate();
 
+const token = sessionStorage.getItem('token');
+
   const SubmitLogin = async (event) => {
     event.preventDefault();
-    await axios.post("https://instaclonebe-rfqu.onrender.com/api/login", login).then((res) => {
-      
+    await axios.post("https://instaclonebe-rfqu.onrender.com/api/login", login
+  ).then((res) => {
     if (res.data.token) {
       sessionStorage.setItem("token", res.data.token);
       navigate('/')

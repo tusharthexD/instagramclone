@@ -40,7 +40,7 @@ function StoryContainer() {
 
   useEffect(() => {
     const fetchData = async () => {
-      await axios.get("/api/stories").then((e) => {
+      await axios.get("https://instaclonebe-rfqu.onrender.com/api/stories").then((e) => {
         const resultArray = [];
 
         // Iterate through the dataArray
