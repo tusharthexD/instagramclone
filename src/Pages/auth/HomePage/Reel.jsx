@@ -156,7 +156,7 @@ const Reel = ({ videos }) => {
             onClick={handleTap}
             onEnded={() => handleVideoChange(index + 1)}
           />
-          <div className="d-flex position-absolute align-items-center me-2 mb-2 text-light end-0 bottom-0 flex-column">
+          <div className="z-3 d-flex position-absolute align-items-center me-2 mb-2 text-light end-0 bottom-0 flex-column">
             <IconButton className="text-white pb-1" onClick={likeDislike}>
               {like ? <FavoriteIcon color="warning" /> : <FavoriteBorderIcon />}
             </IconButton>

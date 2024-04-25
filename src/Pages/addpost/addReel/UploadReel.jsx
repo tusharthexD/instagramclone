@@ -148,6 +148,7 @@ function UploadReel(props) {
         id="ReelVideo"
         src={videoUrl}
         ref={videoRef}
+        loop
         onLoadedMetadata={handleLoadedMetadata}
         onTimeUpdate={handleTimeUpdate}
         playsInline  // This prevents automatic full-screen on Android
