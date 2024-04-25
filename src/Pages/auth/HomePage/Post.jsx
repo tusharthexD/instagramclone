@@ -73,7 +73,7 @@ else{
       </div>
       <img
         src={props.post}
-        style={{ maxWidth: "800px" }}
+        style={{ maxWidth: "800px",width: '100%' }}
         className="postImg w-100 rounded border"
         alt=""
       />
@@ -123,7 +123,7 @@ else{
             id="postCommentBar"
             value={comment.addcmt}
             onChange={(e) =>
-              setComment({username:"pawansahu",addcmt:e.target.value})
+              setComment({username:"",addcmt:e.target.value})
             }
           />
           {comment.addcmt.length > 0 ? (
