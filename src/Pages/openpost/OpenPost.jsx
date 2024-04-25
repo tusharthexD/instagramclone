@@ -85,7 +85,9 @@ setdltPost(p=> !p)
 } 
 
 function deletePost(){
-  axios.post("http://localhost:3000/api/deletepost",{id: post.id})
+  axios.post("https://instaclonebe-rfqu.onrender.com/api/deletepost",{id: post.id})
+  .then(e=>console.log(e))
+  .catch(err=>console.log(err))
 }
     
 if (post) {
