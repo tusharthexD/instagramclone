@@ -93,7 +93,7 @@ if (activeStoryIndex > 0) {
 if (stories) {
   return (
    <div className="vh-100">
-   <a href="/" className="position-absolute end-0 m-1 me-4" ><CloseRoundedIcon /></a>
+   <a href="/" className="position-absolute end-0 m-2 z-3" ><CloseRoundedIcon className="z-3" /></a>
     <div ref={containerRef} className="vh-100 vw-100 overflow-y-hidden d-none d-md-flex border-danger border" style={{padding: `0 ${window.innerWidth / 5}px`, gap: '5px'}} >
       {stories.map((e, index) => (
         <div

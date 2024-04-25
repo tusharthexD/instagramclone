@@ -9,7 +9,8 @@ function Search(props) {
     const [loading, setLoading] = useState(false)
   
     function findUser(e) {
-      setSearch(e.target.value);
+      const value = e.target.value.toLowerCase()
+      setSearch(value);
       if (e.target.value.length === 0) {
         setLoading(false)
       }
@@ -46,7 +47,7 @@ function Search(props) {
             {result.map((e,index) => {
               return (
                 <Slide in={true} key={index}  direction='right' ><a href={"/"+e.username} >
-                <div className="d-flex align-items-center">
+                <div key={index} className="d-flex align-items-center">
                   <img
                     src={e.profile ? e.profile : "/blankProfile.png"}
                     className="rounded-circle me-2"

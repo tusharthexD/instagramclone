@@ -85,6 +85,11 @@ const token = sessionStorage.getItem('token');
   function uploadStory() {
     showStory((p) => !p);
   }
+
+  function LogOut() {
+    sessionStorage.clear()
+    navigate("/login");
+  }
   if (result) {
     return (
       <div className="d-flex">
@@ -99,7 +104,7 @@ const token = sessionStorage.getItem('token');
         <div className="col-12 col-md-8 flex-grow-1 d-flex flex-column align-items-center">
           <div className="profileSec col-12 d-flex align-items-center pb-5 mt-4">
             <div className="ms-4 col-2">
-              <div className="position-relative z-n1">
+              <div className="position-relative">
                 <img
                   className="col-12 rounded-circle"
                   src={result.profile ? result.profile : "/blankProfile.png"}
@@ -108,7 +113,7 @@ const token = sessionStorage.getItem('token');
                 {myProfile ? (
                   <AddCircleIcon
                     onClick={uploadStory}
-                    className="z-3 btn position-absolute end-0 bottom-0 text-primary"
+                    className="position-absolute end-0 bottom-0 text-primary"
                   />
                 ) : null}
               </div>
@@ -134,13 +139,20 @@ const token = sessionStorage.getItem('token');
                       {follow ? "Following" : "Follow"}
                     </Button>
                   )}
-
+                {myProfile?  <Button
+                    style={{ textTransform: "none" }}
+                    className="py-1 rounded-3 text-white bg-secondary"
+                    onClick={LogOut}
+                  >
+                    Logout
+                  </Button> :
                   <Button
                     style={{ textTransform: "none" }}
                     className="py-1 rounded-3 text-white bg-secondary"
                   >
                     Message
-                  </Button>
+                  </Button>}
+                 
                 </div>
               </div>
 

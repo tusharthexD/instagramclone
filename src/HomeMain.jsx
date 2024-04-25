@@ -4,7 +4,6 @@ import Navbar from "./Pages/navbar/Navbar";
 import axios from "axios";
 import { Link, useNavigate} from "react-router-dom";
 import Home from "./Pages/auth/HomePage/Home";
-import axiosInstance from "../axiosInstance";
 
 function HomeMain() {
   const [name, setName] = useState("");
@@ -23,7 +22,6 @@ const token = sessionStorage.getItem('token');
   }
       })
          .then((res) => {
-           console.log(res.data);
            if (res.data.isLoggedin) {
              setName(true);
              sessionStorage.setItem("username", res.data.username);

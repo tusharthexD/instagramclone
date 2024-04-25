@@ -10,7 +10,6 @@ import BookmarkIcon from "@mui/icons-material/Bookmark";
 import DoneIcon from "@mui/icons-material/Done";
 import axios from "axios";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import Navbar from "../../navbar/Navbar";
 import { Waypoint } from "react-waypoint";
 import ReactPlayer from "react-player";
 import HorizontalRuleRoundedIcon from "@mui/icons-material/HorizontalRuleRounded";

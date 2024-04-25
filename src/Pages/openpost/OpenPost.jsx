@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams} from "react-router-dom";
-import { IconButton } from '@mui/material';
+import { IconButton, Zoom } from '@mui/material';
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ChatBubbleOutlineRoundedIcon from "@mui/icons-material/ChatBubbleOutlineRounded";
 import SendSharpIcon from "@mui/icons-material/SendSharp";
@@ -11,6 +11,7 @@ import DoneIcon from "@mui/icons-material/Done";
 import axios from "axios";
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import Navbar from "../navbar/Navbar";
+import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 
 function OpenPost() {
 const { id } = useParams();
@@ -20,6 +21,7 @@ const [post, setPost] = useState(null)
 const [like, setLike] = useState(false);
 const [save, setSave] = useState(false);
 const [likes, addLike] = useState(0);
+const [dltpost,setdltPost] = useState(false)
 
 const [comment, setComment] = useState({ addcmt: "" });
 
@@ -77,6 +79,14 @@ else{
   })
 } 
   }
+
+function menu(){
+setdltPost(p=> !p)
+} 
+
+function deletePost(){
+  axios.post("http://localhost:3000/api/deletepost",{id: post.id})
+}
     
 if (post) {
     return (
@@ -85,7 +95,8 @@ if (post) {
        <div><Navbar/></div>
       <div className="d-flex col-12 col-md-8 flex-grow-1 align-items-center justify-content-center mb-5 mb-md-0" >
        <div className='overflow-hidden post bg-light d-flex flex-column flex-md-row col-12 col-md-10 rounded-3 border border-1' >
-      <p className="text-center w-100 border-bottom py-2 d-md-none" >Post</p>     <div className="d-flex d-md-none p-2 align-items-center border-bottom">
+      <p className="text-center w-100 border-bottom py-2 d-md-none" >Post</p>     
+      <div className="d-flex d-md-none p-2 align-items-center border-bottom">
               <img
                 className="rounded-circle me-2"
                 style={{ width: "30px", height: "30px" }}
@@ -94,6 +105,13 @@ if (post) {
                 alt=""
               />
               <p className="fw-bolder mb-1">{post.username}</p>
+              <MoreVertRoundedIcon onClick={menu} />
+              <Zoom in={dltpost}>
+                <div className="rounded-1 d-flex flex-column position-absolute top-50 start-50 translate-middle bg-light p-4 pt-1" >
+                  <small>Options</small>
+                  <button onClick={deletePost} className="bg-danger btn" >Delete Post?</button>
+                </div>
+              </Zoom>
             </div>
         <div className='mh-100 col-12 col-md-6 d-flex align-items-center bg-dark' >
         <img className='w-100' src={post.post} alt="" /></div>

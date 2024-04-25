@@ -9,10 +9,11 @@ function Explore() {
   const [result, setResult] = useState([]);
 
   function findUser(e) {
-    setSearch(e.target.value);
+    const value = e.target.value.toLowerCase()
+    setSearch(value);
   }
   useEffect(() => {
-    axios.post("https://instaclonebe-rfqu.onrender.com/api/search", { search: search }).then((res) => {
+    axios.post("https://instaclonebe-rfqu.onrender.com/api/search", { search: search}).then((res) => {
       if (search) {
         setResult(res.data);
       } else {
@@ -40,12 +41,11 @@ function Explore() {
             type="text"
           />
           {search ? <div className="mt-3 position-absolute bg-light col-7 p-2 rounded" >
-            {result.map((e) => {
+            {result.map((e,index) => {
               return (
-               <Link to={"/"+e.username} >
+               <Link key={index} to={"/"+e.username} >
                 <div className="d-flex align-items-center">
                   <img
-                  key={e.username}
                     src={e.profile ? e.profile : "/blankProfile.png"}
                     className="rounded-circle me-2"
                     style={{ height: "40px" }}
