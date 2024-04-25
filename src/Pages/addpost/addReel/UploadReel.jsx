@@ -150,6 +150,8 @@ function UploadReel(props) {
         ref={videoRef}
         onLoadedMetadata={handleLoadedMetadata}
         onTimeUpdate={handleTimeUpdate}
+        playsInline  // This prevents automatic full-screen on Android
+        webkit-playsinline
       ></video>
         </div>
         <div className="bg-light w-100">

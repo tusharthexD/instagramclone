@@ -152,6 +152,7 @@ const Reel = ({ videos }) => {
             loop
             muted={isMuted}
             className="video"
+            playsinline 
             onClick={handleTap}
             onEnded={() => handleVideoChange(index + 1)}
           />
