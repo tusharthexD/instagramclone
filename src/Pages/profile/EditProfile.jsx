@@ -121,7 +121,7 @@ function EditProfile() {
                 }
               )
               .then((res) => {
-                if (res.data == "Changes Saved") {
+                if (res.data) {
                   navigate("/" + user.username);
                 } else {
                   navigate("/profile/edit");
