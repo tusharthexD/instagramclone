@@ -134,7 +134,11 @@ function EditProfile() {
       }
     } else {
       axios
-        .post("https://instaclonebe-rfqu.onrender.com/api/profile/edit", user)
+        .post("https://instaclonebe-rfqu.onrender.com/api/profile/edit", user, {
+                  headers: {
+                    Authorization: token ? `Bearer ${token}` : "", // Include Authorization header if token exists
+                  },
+                })
         .then((res) => {
           if (res.data == "Changes Saved") {
             navigate("/" + user.username);
