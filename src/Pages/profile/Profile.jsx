@@ -108,7 +108,7 @@ const token = sessionStorage.getItem('token');
                 {myProfile ? (
                   <AddCircleIcon
                     onClick={uploadStory}
-                    className=" position-absolute end-0 bottom-0 text-primary"
+                    className="z-3 btn position-absolute end-0 bottom-0 text-primary"
                   />
                 ) : null}
               </div>

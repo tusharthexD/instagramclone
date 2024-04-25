@@ -61,7 +61,7 @@ else{
   },[])
 
   return (
-    <div className="m-sm-4 mx-sm-5 col-12 col-md-8 col-lg-6 pb-1 mb-5 m-1 border-bottom">
+    <div className="m-sm-4 mx-sm-5 col-12 p-2 col-md-8 col-lg-6 pb-1 mb-5 m-1 border-bottom">
       <div className="w-100 d-flex align-items-center pt-2 pb-2">
           <img
             src={props.profile? props.profile : "blankProfile.png"}
