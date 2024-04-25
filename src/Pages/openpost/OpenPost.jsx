@@ -85,7 +85,13 @@ setdltPost(p=> !p)
 } 
 
 function deletePost(){
-  axios.post("https://instaclonebe-rfqu.onrender.com/api/deletepost",{id: post.id})
+const token = sessionStorage.getItem('token');
+
+  axios.post("https://instaclonebe-rfqu.onrender.com/api/deletepost",{id: post.id},{
+    headers: {
+    Authorization: token ? `Bearer ${token}` : '', // Include Authorization header if token exists
+  },
+  })
   .then(e=>console.log(e))
   .catch(err=>console.log(err))
 }

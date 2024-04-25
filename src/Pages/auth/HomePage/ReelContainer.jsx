@@ -22,7 +22,7 @@ return (
  <div>
  <div  ><Navbar/></div>
   <div className='reel-container'>
-    <CloseRoundedIcon className='position-absolute top0 end-0 m-2' onClick={closeReels} />
+    <CloseRoundedIcon className='z-3 position-absolute top0 end-0 m-2' onClick={closeReels} />
     {videos.map((e,index)=>{
        return <Reel key={index} videos={e} />
     })}
