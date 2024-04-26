@@ -9,6 +9,8 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import DoneIcon from "@mui/icons-material/Done";
 import { Link } from 'react-router-dom';
+import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
+
 
 function Post(props) {
   const [like, setLike] = useState(false);
@@ -17,6 +19,7 @@ function Post(props) {
   const [likes, addLike] = useState(props.likes.length);
   const caption = props.caption;
   const [comment, setComment] = useState({ addcmt: "" });
+  const [dltpost,setdltPost] = useState(false)
 
   const token = sessionStorage.getItem('token');
 
@@ -60,9 +63,30 @@ else{
     }
   },[])
 
+  function menu(){
+setdltPost(p=> !p)
+} 
+
+function deletePost(){
+const token = sessionStorage.getItem('token');
+
+  axios.post("https://instaclonebe-rfqu.onrender.com/api/deletepost",{id: post.id},{
+    headers: {
+    Authorization: token ? `Bearer ${token}` : '', // Include Authorization header if token exists
+  },
+  })
+  .then(e=>{
+    if(e.data === 'Deleted Successfully'){
+      navigate('/')
+    } else {
+      navigate("/post/"+post.id)
+    }
+  })
+  .catch(err=>console.log(err))
+}
   return (
     <div className="m-sm-4 mx-sm-5 col-12 p-2 col-md-8 col-lg-6 pb-1 mb-5 m-1 border-bottom">
-      <div className="w-100 d-flex align-items-center pt-2 pb-2">
+      <div className="w-100 d-flex align-items-center pt-2 pb-2 position-relative">
           <img
             src={props.profile? props.profile : "blankProfile.png"}
             id="navProfile"
@@ -70,7 +94,15 @@ else{
             alt=""
           />
         <a className="fw-bolder mb-1" role="button" href={"/"+props.username} >{props.username}</a>
+        {sessionStorage.username === props.username ? <MoreVertRoundedIcon className="position-absolute end-0" onClick={menu} /> : null}
       </div>
+      <Zoom in={dltpost}>
+                <div className="rounded-1 d-flex flex-column position-absolute top-50 start-50 translate-middle bg-light p-4 pt-1" >
+                  <CloseRoundedIcon className="position-absolute end-0" onClick={()=>{setdltPost(p=>!p)}} />
+                  <small>Options</small>
+                  <button onClick={deletePost} className="bg-danger btn mt-3" >Delete Post?</button>
+                </div>
+              </Zoom>
       <img
         src={props.post}
         style={{ maxWidth: "800px",width: '100%' }}

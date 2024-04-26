@@ -124,31 +124,32 @@ if (post) {
               <img
                 className="rounded-circle me-2"
                 style={{ width: "30px", height: "30px" }}
-                // src={post.profile != null ? post.profile : '/blankProfile.png'}
-                 src="/blankProfile.png"
+                src={post.profile? post.profile : '/blankProfile.png'}
                 alt=""
               />
               <a href={'/'+post.username} className="fw-bolder mb-1">{post.username}</a>
               {sessionStorage.username === post.username ? <MoreVertRoundedIcon className="position-absolute end-0" onClick={menu} /> : null}
-              <Zoom in={dltpost}>
+              
+            </div>
+            <Zoom in={dltpost}>
                 <div className="rounded-1 d-flex flex-column position-absolute top-50 start-50 translate-middle bg-light p-4 pt-1" >
                   <CloseRoundedIcon className="position-absolute end-0" onClick={()=>{setdltPost(p=>!p)}} />
                   <small>Options</small>
                   <button onClick={deletePost} className="bg-danger btn mt-3" >Delete Post?</button>
                 </div>
               </Zoom>
-            </div>
         <div className='mh-100 col-12 col-md-6 d-flex align-items-center bg-dark' >
         <img className='w-100' src={post.post} alt="" /></div>
-        <div className="w-100 d-flex flex-column">
+        <div className="w-100 d-flex flex-column position-relative">
             <div className="d-none d-md-flex p-3 align-items-center border-bottom">
               <img
                 className="rounded-circle me-2"
                 style={{ width: "30px", height: "30px" }}
-                src={post.profile != null ? post.profile : '/blankProfile.png'}
+                src={post.profile? post.profile : '/blankProfile.png'}
                 alt=""
               />
               <p className="fw-bolder mb-1">{post.username}</p>
+              {sessionStorage.username === post.username ? <MoreVertRoundedIcon className="position-absolute end-0" onClick={menu} /> : null}
             </div>
          <div className="overflow-y-scroll d-md-block d-none h-50 border-bottom p-2" >
            {post.caption?
@@ -156,7 +157,7 @@ if (post) {
               <img
                 className="rounded-circle me-2"
                 style={{ width: "40px", height: "40px" }}
-                src={post.profile != null ? post.profile : '/blankProfile.png'}
+                src={post.profile? post.profile : '/blankProfile.png'}
                 alt=""/>
             
             <div className="me-3" ><p><span className="fw-bolder me-1">{post.username}</span>
