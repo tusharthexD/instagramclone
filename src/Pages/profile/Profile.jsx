@@ -62,15 +62,23 @@ const token = sessionStorage.getItem('token');
         //if user follow
         axios
           .post("https://instaclonebe-rfqu.onrender.com/api/follow", {
-            user: id,
-          })
+            user: id},
+            {
+        headers: {
+    Authorization: token ? `Bearer ${token}` : '', // Include Authorization header if token exists
+  }
+        })
           .then((res) => setFollow(true));
       } else {
         //if user unfollow
         axios
           .post("https://instaclonebe-rfqu.onrender.com/api/unfollow", {
-            user: id,
-          })
+            user: id},
+            {
+        headers: {
+    Authorization: token ? `Bearer ${token}` : '', // Include Authorization header if token exists
+  }
+        })
           .then((res) => setFollow(false));
       }
     } else {
