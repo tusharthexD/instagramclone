@@ -8,6 +8,8 @@ function Register() {
 
   const navigate = useNavigate()
   const [wrongPsw, setWrongPsw] = useState("");
+  const [loading, setLoading] = useState(false)
+
   const [login, setLogin] = useState({
     username: "",
     password: "",
@@ -15,6 +17,7 @@ function Register() {
   const [OTP, setOtp] = useState(false);
 
   const SubmitLogin = async (event) => {
+    setLoading(true)
     event.preventDefault()
     let psw1 = event.target.password1.value;
     let psw = event.target.password.value;
@@ -22,6 +25,8 @@ function Register() {
       await axios
         .post("https://instaclonebe-rfqu.onrender.com/api/register", login)
         .then((res) => {
+    setLoading(false)
+
           if (res.data == 'USER CREATED') {
             navigate('/')
           } else {
@@ -48,16 +53,18 @@ function Register() {
   }
 
   async function EmailRegistration(e) {
+    setLoading(true)
     const response = await axios.post("https://instaclonebe-rfqu.onrender.com/api/emailRegistration", login);
-    console.log(response.data);
     if (response.data === true) {
-      console.log(response.data);
+    setLoading(false)
       setOtp(true);
     }
   }
 
   return (
-    <div className="col-md-5 m-auto mt-5">
+    <div className="col-md-5 m-auto mt-5 position-relative">
+    {loading ?  <div className="h-100 w-100 bg-light position-absolute d-flex justify-content-center align-items-center z-3" ><div className="spinner-border" style={{height:"200px",width:"200px"}} role="status"></div></div> : null}
+
       <p className="text-center">{wrongPsw}</p>
       <form onSubmit={SubmitLogin} className="m-4">
         <div className="form-group ">

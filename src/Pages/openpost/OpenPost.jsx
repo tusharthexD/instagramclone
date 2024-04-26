@@ -92,10 +92,26 @@ const token = sessionStorage.getItem('token');
     Authorization: token ? `Bearer ${token}` : '', // Include Authorization header if token exists
   },
   })
-  .then(e=>console.log(e))
+  .then(e=>{
+    if(e.data === 'Deleted Successfully'){
+      navigate('/')
+    } else {
+      navigate("/post/"+post.id)
+    }
+  })
   .catch(err=>console.log(err))
 }
     
+const handleShare = () => {
+    navigator.clipboard.writeText(window.location.href)
+      .then(() => {
+        alert('Link copied to clipboard!');
+      })
+      .catch((error) => {
+        console.error('Error copying link to clipboard:', error);
+        alert('Failed to copy link to clipboard');
+      });
+  };
 if (post) {
     return (
       <div className='postWindow bg-opacity-75 d-flex' >
@@ -104,7 +120,7 @@ if (post) {
       <div className="d-flex col-12 col-md-8 flex-grow-1 align-items-center justify-content-center mb-5 mb-md-0" >
        <div className='overflow-hidden post bg-light d-flex flex-column flex-md-row col-12 col-md-10 rounded-3 border border-1' >
       <p className="text-center w-100 border-bottom py-2 d-md-none" >Post</p>     
-      <div className="d-flex d-md-none p-2 align-items-center border-bottom">
+      <div className="d-flex d-md-none p-2 position-relative align-items-center border-bottom">
               <img
                 className="rounded-circle me-2"
                 style={{ width: "30px", height: "30px" }}
@@ -112,12 +128,13 @@ if (post) {
                  src="/blankProfile.png"
                 alt=""
               />
-              <p className="fw-bolder mb-1">{post.username}</p>
-              <MoreVertRoundedIcon onClick={menu} />
+              <a href={'/'+post.username} className="fw-bolder mb-1">{post.username}</a>
+              {sessionStorage.username === post.username ? <MoreVertRoundedIcon className="position-absolute end-0" onClick={menu} /> : null}
               <Zoom in={dltpost}>
                 <div className="rounded-1 d-flex flex-column position-absolute top-50 start-50 translate-middle bg-light p-4 pt-1" >
+                  <CloseRoundedIcon className="position-absolute end-0" onClick={()=>{setdltPost(p=>!p)}} />
                   <small>Options</small>
-                  <button onClick={deletePost} className="bg-danger btn" >Delete Post?</button>
+                  <button onClick={deletePost} className="bg-danger btn mt-3" >Delete Post?</button>
                 </div>
               </Zoom>
             </div>
@@ -174,8 +191,8 @@ if (post) {
               <ChatBubbleOutlineRoundedIcon />
             </IconButton>
             
-            <IconButton >
-              <SendSharpIcon />
+            <IconButton onClick={handleShare} >
+              <SendSharpIcon  />
             </IconButton>
           </div>
           <IconButton onClick={() => setSave((p) => !p)}>

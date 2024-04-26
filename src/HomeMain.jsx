@@ -61,7 +61,10 @@ const token = sessionStorage.getItem('token');
     </div>
   );
   } else {
-    <div className="position-absolute">Technical error</div>
+   return <div className="position-absolute top-50 start-50 translate-middle" >Application is loading Please Wait...
+    {!name ?  <div className="h-100 w-100 position-absolute d-flex justify-content-center align-items-center z-3" ><div className="spinner-border" style={{height:"20px",width:"20px"}} role="status"></div></div> : null}
+   
+   </div>
   }
 }
 

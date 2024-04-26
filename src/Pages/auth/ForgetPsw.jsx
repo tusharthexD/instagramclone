@@ -12,20 +12,24 @@ function ForgetPsw() {
     const [OTP,setOTP] = useState(false)
     const [success, setSuccess] = useState(false)
     const [final, setFinal] = useState(false)
-    const [password, setPassword] = useState(false)
+  const [loading, setLoading] = useState(false)
+
 
 const SubmitEmail = async (e)=>{
+    setLoading(true)
      e.preventDefault()
     const result = await axios.post('https://instaclonebe-rfqu.onrender.com/api/reset',{email: email})
-    console.log(result.data);
+    setLoading(false)
         setEmailAvailable(true)
         setOTP(result.data)
     }
 const SubmitPassword = async (e)=>{
+    setLoading(true)
 
     if (reset.password1 === reset.password2) {
         e.preventDefault()
        const res = await axios.post('https://instaclonebe-rfqu.onrender.com/api/resetpassword', reset)
+    setLoading(false)
        setSuccess(res.data)
        setFinal(true)
        setOTP(false)
@@ -38,6 +42,8 @@ function handleChange(e){
 }    
   return (
         <div className='vh-100 vw-100' >
+    {loading ?  <div className="h-100 w-100 bg-light position-absolute d-flex justify-content-center align-items-center z-3" ><div className="spinner-border" style={{height:"200px",width:"200px"}} role="status"></div></div> : null}
+
           {!OTP ?<div className='col-10 col-md-4 border rounded-2 position-absolute start-50 translate-middle-x mt-5 d-flex flex-column align-items-center pb-5' >
             <LockOutlinedIcon className='mt-4' style={{fontSize: '120px', stroke: "white", strokeWidth:'1px'}} />
             <form className='w-100 d-flex flex-column align-items-center' onSubmit={SubmitEmail}>

@@ -5,6 +5,7 @@ import axiosInstance from "../../../axiosInstance";
 
 function LoginPage() {
   const [wrongPsw, setWrongPsw] = useState("");
+  const [loading, setLoading] = useState(false)
   const [login, setLogin] = useState({
     username: "",
     password: "",
@@ -15,9 +16,11 @@ function LoginPage() {
 const token = sessionStorage.getItem('token');
 
   const SubmitLogin = async (event) => {
+    setLoading(true)
     event.preventDefault();
     await axios.post("https://instaclonebe-rfqu.onrender.com/api/login", login
   ).then((res) => {
+    setLoading(false)
     if (res.data.token) {
       sessionStorage.setItem("token", res.data.token);
       navigate('/')
@@ -38,7 +41,9 @@ const token = sessionStorage.getItem('token');
   }
 
   return (
-    <div className="col-10 col-md-5 col-lg-3 m-auto border border-1 mt-5">
+    <div className="col-10 col-md-5 col-lg-3 m-auto border border-1 mt-5 position-relative">
+    {loading ?  <div className="h-100 w-100 bg-light position-absolute d-flex justify-content-center align-items-center z-3" ><div className="spinner-border" style={{height:"200px",width:"200px"}} role="status"></div></div> : null}
+
       <form method="post" className="m-4" onSubmit={SubmitLogin}>
       <div className="d-flex justify-content-center my-3" ><img src="/instagram-text.png" alt="" style={{width:'200px'}} className="" /></div>
         <div className="form-group">
